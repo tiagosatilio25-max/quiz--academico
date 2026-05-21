@@ -39,7 +39,7 @@ body{
     color:white;
     position:relative;
     padding:40px;
-    background-image: url('/public/imgs/quiz.png');
+    background-image: url('/imgs/quiz.png');
     background-position: center;   /* CENTRALIZA */
     background-repeat: no-repeat;  /* evita repetição */
     background-size: contain;      /* mantém a imagem inteira visível */

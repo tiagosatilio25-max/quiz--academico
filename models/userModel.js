@@ -1,18 +1,31 @@
-const db = require("../config/db");
+import { pool } from "../config/database.js";
 
-function criarUsuario(nome, email, senha) {
-    const sql = "INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)";
+// Buscar usuário pelo email
+export async function buscarUsuarioPorEmail(email) {
+  const [rows] = await pool.query(
+    "SELECT * FROM usuarios WHERE email = ?",
+    [email]
+  );
 
-    return db.promise().query(sql, [nome, email, senha]);
+  return rows[0];
 }
 
-function buscarUsuarioPorEmail(email) {
-    const sql = "SELECT * FROM usuarios WHERE email = ?";
+// Criar usuário
+export async function criarUsuario(nome, email, senha) {
+  const [result] = await pool.query(
+    "INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)",
+    [nome, email, senha]
+  );
 
-    return db.promise().query(sql, [email]);
+  return result;
 }
 
-module.exports = {
-    criarUsuario,
-    buscarUsuarioPorEmail
-};
+// Atualizar senha
+export async function atualizarSenha(email, novaSenha) {
+  const [result] = await pool.query(
+    "UPDATE usuarios SET senha = ? WHERE email = ?",
+    [novaSenha, email]
+  );
+
+  return result;
+}

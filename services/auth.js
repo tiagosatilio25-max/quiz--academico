@@ -34,7 +34,7 @@ if (googleBtn) {
 
       alert("Login Google realizado!");
 
-      window.location.href = "../views/home.html";
+      window.location.href = "quiz.html";
 
     } catch (error) {
 
