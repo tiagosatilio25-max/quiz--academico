@@ -3,10 +3,10 @@ import path from "path";
 
 const router = express.Router();
 
-// // Página inicial
-// router.get("/", (req, res) => {
-//   res.sendFile(path.join(process.cwd(), "login.html"));
-// });
+// Página inicial
+router.get("/", (req, res) => {
+  res.sendFile(path.join(process.cwd(), "login.html"));
+});
 
 // Login
 router.get("/login", (req, res) => {

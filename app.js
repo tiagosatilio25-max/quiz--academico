@@ -1,8 +1,8 @@
 import express from "express";
 import path from "path";
 
-import pontuacaoRoutes from "./routes/pontuacaoRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import pageRoutes from "./routes/pageRoutes.js"
 
 
 import quizRoutes from "./routes/quizRoutes.js";
@@ -19,6 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Arquivos estáticos
+  // app.use(express.static(path.join(__dirname, 'views')));
 app.use(express.static(path.join(process.cwd(), "views")));
 app.use("/css", express.static(path.join(process.cwd(), "css")));
 app.use("/imgs", express.static(path.join(process.cwd(), "public/imgs")));
@@ -27,11 +28,10 @@ app.use("/js", express.static(path.join(process.cwd(), "public/js")));
 // Rotas
 
 app.use("/api/users", userRoutes);
-app.use("/", userRoutes);
+app.use("/", pageRoutes);
 app.use("/", quizRoutes);
 app.use("/", pontuacaoRoutes);
 app.use("/", rankingRoutes);
-
 // porta
 
 const PORT = process.env.PORT || 3000;
